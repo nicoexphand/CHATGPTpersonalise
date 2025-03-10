@@ -7,15 +7,15 @@
   },
   "servers": [
     {
-      "url": "https://raw.githubusercontent.com/nicoexphand/ChatGPTperso/main",
+      "url": "https://raw.githubusercontent.com/nicoexphand/CHATGPTpersonalise/main",
       "description": "Serveur GitHub"
     }
   ],
   "paths": {
     "/script-to-blog": {
       "post": {
-        "summary": "Génère 2-3 plans d'articles de blog à partir d'un script vidéo",
-        "operationId": "generateScriptToBlog",
+        "summary": "Convertit un script vidéo en article de blog",
+        "operationId": "scriptToBlog",
         "requestBody": {
           "required": true,
           "content": {
@@ -23,7 +23,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "theme": { "type": "string", "description": "Thème de l'article" },
+                  "theme": { "type": "string", "description": "Thème du script" },
                   "notes": { "type": "string", "description": "Notes ou plan fourni par l'utilisateur", "nullable": true }
                 }
               }
@@ -32,7 +32,7 @@
         },
         "responses": {
           "200": {
-            "description": "Propositions de 2-3 plans d'article de blog",
+            "description": "Proposition de plans pour un article de blog",
             "content": {
               "application/json": {
                 "schema": {
@@ -59,8 +59,8 @@
     },
     "/direct-blog": {
       "post": {
-        "summary": "Génère un article de blog directement sans passer par l’étape des plans",
-        "operationId": "generateDirectBlog",
+        "summary": "Génère un article de blog directement",
+        "operationId": "directBlog",
         "requestBody": {
           "required": true,
           "content": {
@@ -68,8 +68,8 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "theme": { "type": "string", "description": "Thème de l'article" },
-                  "notes": { "type": "string", "description": "Notes ou plan fourni par l'utilisateur", "nullable": true }
+                  "theme": { "type": "string", "description": "Thème du blog" },
+                  "notes": { "type": "string", "description": "Notes ou contexte de l'utilisateur", "nullable": true }
                 }
               }
             }
@@ -128,7 +128,7 @@
     },
     "/generate-social-posts": {
       "post": {
-        "summary": "Propose 2-3 publications pour les réseaux sociaux",
+        "summary": "Génère 2-3 publications pour les réseaux sociaux",
         "operationId": "generateSocialPosts",
         "requestBody": {
           "required": true,
@@ -137,7 +137,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "script": { "type": "string", "description": "Script de la vidéo ou article du blog" }
+                  "script": { "type": "string", "description": "Script ou article généré" }
                 }
               }
             }
