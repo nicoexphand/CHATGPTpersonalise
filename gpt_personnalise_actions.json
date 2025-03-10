@@ -3,7 +3,7 @@
   "info": {
     "title": "Actions GPT Personnalisé",
     "description": "Définition des actions pour la génération de scripts, articles et publications",
-    "version": "1.0.1"
+    "version": "1.0.0"
   },
   "servers": [
     {
@@ -166,7 +166,7 @@
     },
     "/generate-blog-direct": {
       "post": {
-        "summary": "Génère un article de blog immédiatement à partir des ressources",
+        "summary": "Génère directement un article de blog sans plan",
         "operationId": "generateBlogDirect",
         "requestBody": {
           "required": true,
@@ -175,8 +175,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "theme": { "type": "string", "description": "Thème du blog" },
-                  "tone": { "type": "string", "description": "Ton souhaité (informatif, narratif, éducatif...)", "nullable": true }
+                  "script": { "type": "string", "description": "Script de la vidéo" }
                 }
               }
             }
@@ -190,7 +189,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "blogArticle": { "type": "string" }
+                    "article": { "type": "string" }
                   }
                 }
               }
@@ -228,51 +227,6 @@
                       "type": "array",
                       "items": {
                         "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/youtube-to-blog-plan": {
-      "post": {
-        "summary": "Propose un plan pour un article de blog à partir d’une vidéo YouTube",
-        "operationId": "generateYoutubeToBlogPlan",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "youtubeLink": { "type": "string", "description": "Lien de la vidéo YouTube", "nullable": true },
-                  "notes": { "type": "string", "description": "Notes ou plan fourni par l'utilisateur", "nullable": true }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Propose 2-3 plans détaillés avec frameworks narratifs",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "plans": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "title": { "type": "string" },
-                          "framework": { "type": "string" },
-                          "structure": { "type": "string" }
-                        }
                       }
                     }
                   }
