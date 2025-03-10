@@ -12,10 +12,10 @@
     }
   ],
   "paths": {
-    "/generate-script-plan": {
+    "/script-to-blog": {
       "post": {
-        "summary": "Génère 2-3 plans de script avec frameworks",
-        "operationId": "generateScriptPlan",
+        "summary": "Génère 2-3 plans d'articles de blog à partir d'un script vidéo",
+        "operationId": "generateScriptToBlog",
         "requestBody": {
           "required": true,
           "content": {
@@ -23,7 +23,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "theme": { "type": "string", "description": "Thème du script" },
+                  "theme": { "type": "string", "description": "Thème de l'article" },
                   "notes": { "type": "string", "description": "Notes ou plan fourni par l'utilisateur", "nullable": true }
                 }
               }
@@ -32,7 +32,7 @@
         },
         "responses": {
           "200": {
-            "description": "Réponse avec 2-3 plans de script",
+            "description": "Propositions de 2-3 plans d'article de blog",
             "content": {
               "application/json": {
                 "schema": {
@@ -57,10 +57,10 @@
         }
       }
     },
-    "/generate-script": {
+    "/direct-blog": {
       "post": {
-        "summary": "Génère un script complet basé sur le plan choisi",
-        "operationId": "generateScript",
+        "summary": "Génère un article de blog directement sans passer par l’étape des plans",
+        "operationId": "generateDirectBlog",
         "requestBody": {
           "required": true,
           "content": {
@@ -68,7 +68,8 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "planChosen": { "type": "string", "description": "Plan de script sélectionné" }
+                  "theme": { "type": "string", "description": "Thème de l'article" },
+                  "notes": { "type": "string", "description": "Notes ou plan fourni par l'utilisateur", "nullable": true }
                 }
               }
             }
@@ -76,13 +77,13 @@
         },
         "responses": {
           "200": {
-            "description": "Script généré",
+            "description": "Article de blog généré",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "script": { "type": "string" }
+                    "article": { "type": "string" }
                   }
                 }
               }
@@ -125,79 +126,6 @@
         }
       }
     },
-    "/generate-blog-articles": {
-      "post": {
-        "summary": "Propose 2-3 articles de blog basés sur le script",
-        "operationId": "generateBlogArticles",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "script": { "type": "string", "description": "Script de la vidéo" }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Articles de blog proposés",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "articles": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/generate-blog-direct": {
-      "post": {
-        "summary": "Génère directement un article de blog sans plan",
-        "operationId": "generateBlogDirect",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "script": { "type": "string", "description": "Script de la vidéo" }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Article de blog généré",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "article": { "type": "string" }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/generate-social-posts": {
       "post": {
         "summary": "Propose 2-3 publications pour les réseaux sociaux",
@@ -209,7 +137,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "script": { "type": "string", "description": "Script de la vidéo" }
+                  "script": { "type": "string", "description": "Script de la vidéo ou article du blog" }
                 }
               }
             }
